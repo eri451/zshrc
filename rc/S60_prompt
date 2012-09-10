@@ -74,13 +74,15 @@ function rprompt {
     local brackets=$1
     local color1=$2
     local color2=$3
+    local color3=${PR_BRIGHT_GREEN}
+    local color4=${PR_BRIGHT_BLUE}
 
     local bracket_open="${color1}${brackets[1]}${PR_RESET}"
     local bracket_close="${color1}${brackets[2]}${PR_RESET}"
     local colon="${color1}:"
     local at="${color1}@${PR_RESET}"
 
-    local user_host="${color2}%n${at}${color2}%m"
+    local user_host="${color3}%n${at}${color4}%m"
     local vcs_cwd='${${vcs_info_msg_1_%%.}/$HOME/~}'
     local cwd="${color2}%B%23<…<${vcs_cwd}%<<%b"
     local inner="${cwd}${colon}${user_host}"
@@ -105,8 +107,8 @@ else
             ;;
 
         *)
-            lprompt '{}' $PR_WHITE $PR_WHITE
-            rprompt '()' $PR_WHITE $PR_WHITE
+            lprompt '[]' $PR_WHITE $PR_WHITE
+            rprompt '' $PR_WHITE $PR_WHITE
             ;;
     esac
 fi
@@ -155,7 +157,7 @@ precmd_functions+='zsh_git_prompt_precmd'
 PR_VIMODE="…"
 PR_VICOLOR=${PR_BLUE}
 function zle-line-init zle-keymap-select {
-        PR_VIMODE="${${KEYMAP/vicmd/✖}/(main|viins)/»}"
+        PR_VIMODE="${${KEYMAP/vicmd/✖}/(main|viins)/⁋}"
         PR_VICOLOR="${${KEYMAP/vicmd/${PR_RED}}/(main|viins)/${PR_BRIGHT_GREEN}}"
         zle reset-prompt
 }
