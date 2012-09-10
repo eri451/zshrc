@@ -26,7 +26,7 @@ for COLOR in RED GREEN BLUE YELLOW WHITE BLACK MAGENTA CYAN; do
 done
 PR_RST="%{${reset_color}%}"
 PR_RESET="%{%b%s%u$reset_color%}"
-PR_BG="%{%(?.$PR_RESET.%S)%}"
+PR_BG="%{%(?.$PR_RESET.%s)%}"
 
 
 # time coloring
@@ -66,8 +66,10 @@ function lprompt {
     local vimode='${PR_VIMODE}'
     local vicol='${PR_VICOLOR}'
 
+    local fail="%(?..${PR_RED}!${PR_RESET})"
+
     #PROMPT="${PR_BG}${bracket_open}${git}${cwd}${bracket_close} ${vicol}${vimode}${PR_RESET} "
-    PROMPT="${PR_BG}${bracket_open}${git}${cwd}${bracket_close} ${vicol}${vimode}${PR_RESET} "
+    PROMPT="${PR_BG}${bracket_open}${git}${cwd}${bracket_close} ${fail}${vicol}${vimode}${PR_RESET} "
 }
 
 function rprompt {
@@ -101,9 +103,9 @@ if [ $UID -eq 0 ]; then
     rprompt '<>' $PR_BRIGHT_RED $PR_RED
 else
     case $HOST in
-        matehorst*)
+        Lars*)
             lprompt '' $PR_BRIGHT_BLACK $PR_BRIGHT_BLUE
-            rprompt '' $PR_BRIGHT_GREEN $PR_BRIGHT_BLACK
+            rprompt '' $PR_WHITE $PR_BRIGHT_BLACK
             ;;
 
         *)

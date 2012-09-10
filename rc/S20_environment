@@ -8,8 +8,8 @@ if [ x"$HOSTNAME" = x ] ; then
         export HOSTNAME=$(hostname)
 fi
 
-export EMAIL="dodo@blacksec.org"
-export FULLNAME="dodo"
+export EMAIL="hans.orter@gmx.de"
+export FULLNAME="eri!"
 
 export CVS_RSH="ssh"
 export CVSREAD=yes
