@@ -66,7 +66,7 @@ function lprompt {
     local vimode='${PR_VIMODE}'
     local vicol='${PR_VICOLOR}'
 
-    local fail="%(?..${PR_RED}!${PR_RESET})"
+    local fail="%(?..${PR_RED}%? ${PR_RESET})"
 
     #PROMPT="${PR_BG}${bracket_open}${git}${cwd}${bracket_close} ${vicol}${vimode}${PR_RESET} "
     PROMPT="${PR_BG}${bracket_open}${git}${cwd}${bracket_close} ${fail}${vicol}${vimode}${PR_RESET} "
