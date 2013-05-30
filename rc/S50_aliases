@@ -31,3 +31,4 @@ alias aiccu="sudo aiccu"
 alias i="ip a"
 
 alias gccc="colorgcc"
+alias vi="vim"
