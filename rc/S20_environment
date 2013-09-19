@@ -14,8 +14,8 @@ export FULLNAME="eri!"
 export CVS_RSH="ssh"
 export CVSREAD=yes
 export MANWIDTH=80
-#export EDITOR=vim
-#export VISUAL=vim
+export EDITOR=vim
+export VISUAL=vim
 #export CCACHE_DIR=$HOME/.ccache
 
 export INPUTRC="~/.inputrc"
