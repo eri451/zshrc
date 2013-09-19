@@ -52,6 +52,16 @@ zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}//" "${FM
 zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}//"              "${FMT_PATH}"
 zstyle ':vcs_info:*:prompt:*' nvcsformats   ""                             "%~"
 
+function vimlinked()
+{
+    if [[ -z ${VIMLINKED} ]]
+    then
+        echo ""
+    else
+        echo "${PR_MAGENTA} ⚓ ${VIMLINKED}"
+    fi
+}
+
 function lprompt {
     local brackets=$1
     local color1=$2
@@ -87,7 +97,9 @@ function rprompt {
     local user_host="${color3}%n${at}${color4}%m"
     local vcs_cwd='${${vcs_info_msg_1_%%.}/$HOME/~}'
     local cwd="${color2}%B%23<…<${vcs_cwd}%<<%b"
-    local inner="${cwd}${colon}${user_host}"
+    local vilnk='$(vimlinked)'
+
+    local inner="${vilnk} ${cwd}${colon}${user_host}"
 
     RPROMPT="${PR_RESET}${bracket_open}${inner}${bracket_close}${PR_RESET}"
 }
@@ -197,5 +209,4 @@ case $TERM in
         precmd_functions+='zsh_term_prompt_precmd'
         ;;
 esac
-
 

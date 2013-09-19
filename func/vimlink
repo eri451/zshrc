@@ -1,0 +1,35 @@
+servername=$(echo ${1} | tr "[:lower:]" "[:upper:]")
+
+print "trying to link to ${servername}"
+vim --serverlist | grep ${servername} > /dev/null
+
+_redefines()
+{
+    # force vim to cd with you
+    cd()
+    {
+        builtin cd $*
+        /usr/local/bin/vim --servername ${VIMLINKED} --remote-send ":cd ${PWD}<CR>"
+    }
+
+    # open files in linked vim
+    vim()
+    {
+        /usr/local/bin/vim --servername ${VIMLINKED} --remote $*
+    }
+}
+
+
+if [[ $? -eq 0 ]]
+then
+    if [[ $VIMLINKED != ${servername} ]]
+    then
+        print "now linked to ${servername}"
+        export VIMLINKED=${servername}
+        _redefines
+    else
+        print "this shell is already linked to ${VIMLINKED}"
+    fi
+else
+    print "there is no server ${servername}"
+fi
