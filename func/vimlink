@@ -15,7 +15,12 @@ _redefines()
     # open files in linked vim
     vim()
     {
-        /usr/local/bin/vim --servername ${VIMLINKED} --remote $*
+        if [[ ${1} =~ "--.*" ]]
+        then
+            /usr/local/bin/vim $*
+        else
+            /usr/local/bin/vim --servername ${VIMLINKED} --remote $*
+        fi
     }
 }
 
@@ -27,9 +32,12 @@ then
         print "now linked to ${servername}"
         export VIMLINKED=${servername}
         _redefines
+        cd .
     else
         print "this shell is already linked to ${VIMLINKED}"
     fi
 else
     print "there is no server ${servername}"
 fi
+
+# vim: ft=zsh
