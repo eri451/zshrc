@@ -1,3 +1,5 @@
 cd() { builtin cd $*}
 vim() { /usr/local/bin/vim $* }
 export VIMLINKED=""
+
+# vim: ft=zsh
